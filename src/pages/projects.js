@@ -8,20 +8,16 @@ const Heading = styled.h2`
   font-family: Georgia, serif;
   font-size: 32px;
   font-weight: bold;
-  color: ${COLOUR.secondary};
+  color: ${COLOUR.darkText};
 `;
-
-const SubHeading = styled.p`
-  margin: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 18px;
-  font-weight: normal;
-  color: #2a2a2a;
-`
 
 export default () => (
   <Layout>
-    <Heading>Felix Gudéhn</Heading>
-    <SubHeading>Work in progress 👷⚒⏱</SubHeading>
+    <Heading>Projects</Heading>
+    <p>Mouse event project</p>
+    <p>Cipelist</p>
+    <p>Hippo</p>
+    <p>Huus</p>
+    <p>Hamster Service</p>
   </Layout>
 )
