@@ -86,7 +86,8 @@ const SidebarFab = ({ onClick, visible }) => {
 }
 
 export const Layout = ({ children }) => {
-  const [displaySidebar, setDisplaySidebar] = useState(window.innerWidth > SCREEN_SIZE.tablet);
+  const initialDisplaySidebar = typeof (window) !== "undefined" && window.innerWidth > SCREEN_SIZE.tablet;
+  const [displaySidebar, setDisplaySidebar] = useState(initialDisplaySidebar);
 
 
   return (
