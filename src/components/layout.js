@@ -1,58 +1,108 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { COLOUR } from "../constants";
+import { COLOUR, SCREEN_SIZE } from "../constants";
 
 const SIDEBAR_WIDTH_PX = 150;
 
 const GlobalStyle = createGlobalStyle`
-  html, body, li, ul {
+  html, body {
     background-color: ${COLOUR.primary};
     color: ${COLOUR.darkText};
     margin: 0;
     padding: 0;
   }
 
-  li {
+  ul, li {
+    margin: 0;
+    padding: 0;
     text-decoration: none;
     list-style-type: none;
   }
 `
 
 const Sidebar = styled.div`
+  display: flex;
   position: fixed;
   height: 100%;
   width: ${SIDEBAR_WIDTH_PX}px;
   top: 0;
-  left: 0;
+  left: ${({ visible }) => visible ? 0 : `-${SIDEBAR_WIDTH_PX}px`};
   padding-top: 30px;
-  display: flex;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
   border-right: 1px solid ${COLOUR.secondary};
+  background-color: ${COLOUR.darkBackground};
 `
 
 const Content = styled.div`
+  background: linear-gradient(130deg, ${COLOUR.primary} 60%, ${COLOUR.shadedBackground});
   position: fixed;
   height: 100%;
-  width: calc(100% - ${SIDEBAR_WIDTH_PX}px);
+  width: ${({ sidebarVisible }) => sidebarVisible ? `calc(100% - ${SIDEBAR_WIDTH_PX}px)` : "100%"};
   top: 0;
-  left: ${SIDEBAR_WIDTH_PX}px;
+  left: ${({ sidebarVisible }) => sidebarVisible ? `${SIDEBAR_WIDTH_PX}px` : 0};
 `
 
-export default ({ children }) => (
-  <>
-    <GlobalStyle />
-    <Sidebar>
-      <Link to="/">Felix Gudéhn</Link>
-      <ul>
-        <li><Link to="/projects">Projects</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-    </Sidebar>
-    <Content>
-      {children}
-    </Content>
-  </>
+const sidebarPages = [
+  ["/", "Felix Gudéhn"],
+  ["/projects", "Projects"],
+  ["/blog", "Blog"],
+  ["/about", "About"],
+];
+
+const SidebarLink = styled(props => <Link {...props} />)`
+  color: ${COLOUR.secondary};
+  background-color: transparent;
+  text-decoration: none;
+`
+
+const SidebarLinkContainer = styled.div`
+  padding: 10px 20px;
+  border-bottom: 1px solid ${COLOUR.secondary};
+`
+
+const SidebarItem = ({ pagePath, pageTitle }) => (
+  <SidebarLinkContainer>
+    <SidebarLink to={pagePath} children={pageTitle} />
+  </SidebarLinkContainer>
 )
+
+const Fab = styled.div`
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 1px solid ${COLOUR.secondary};
+  text-align: center;
+  line-height: 40px;
+  font-size: 25px;
+`
+
+const SidebarFab = ({ onClick, visible }) => {
+  return visible ? <Fab onClick={onClick}>❓</Fab> : false;
+}
+
+export const Layout = ({ children }) => {
+  const [displaySidebar, setDisplaySidebar] = useState(window.innerWidth > SCREEN_SIZE.tablet);
+
+
+  return (
+    <>
+      <GlobalStyle />
+      <Sidebar visible={displaySidebar}>
+        <ul>
+          {sidebarPages.map(([pagePath, pageTitle]) => (
+            <li key={pagePath}><SidebarItem pagePath={pagePath} pageTitle={pageTitle} /></li>
+          ))}
+        </ul>
+      </Sidebar>
+      <Content sidebarVisible={displaySidebar} onClick={() => setDisplaySidebar(false)}>
+        {children}
+      </Content>
+      <SidebarFab visible={!displaySidebar} onClick={() => setDisplaySidebar(true)} />
+    </>
+  )
+}
