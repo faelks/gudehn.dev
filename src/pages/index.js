@@ -1,8 +1,7 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { Layout } from "../components/Layout";
-import { PostsTable } from "../components/PostsTable";
+import { Layout, PostsTable } from "../components";
 import { COLOUR } from "../constants";
 
 const Heading = styled.h2`
