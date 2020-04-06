@@ -1,2 +1,2 @@
-export * from "./Layout";
+export * from "./LayoutComponent";
 export * from "./PostsTable";
