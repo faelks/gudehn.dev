@@ -12,6 +12,7 @@ export const Fab = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: ${COLOUR.mono[17]};
 
     & > svg {
       fill: ${COLOUR.secondary};
