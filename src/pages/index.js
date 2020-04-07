@@ -53,6 +53,9 @@ export const query = graphql`
             date
             title
           }
+          fields {
+            slug
+          }
         }
       }
     }

@@ -7,7 +7,7 @@ export const PostsTable = ({ posts }) => {
       Total posts: {posts.length}
       {posts.map(post => (
         <div key={post.node.id}>
-          <h2>{post.node.frontmatter.title}</h2>
+          <h2>{post.node.frontmatter.title} ({post.node.fields.slug})</h2>
           <p>{post.node.frontmatter.date}</p>
         </div>
       ))}
