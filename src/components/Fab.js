@@ -14,6 +14,6 @@ export const Fab = styled.div`
     justify-content: center;
 
     & > svg {
-      color: ${COLOUR.secondary};
+      fill: ${COLOUR.secondary};
     }
 `

@@ -1,12 +1,26 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import { GlobalStyle, Sidebar, Fab } from ".";
-import { COLOUR, SCREEN_SIZE } from "../constants";
+import { Fab, GlobalStyle, Sidebar } from ".";
+import { COLOUR, SCREEN_SIZE, SIDEBAR_WIDTH_PX, BREAKPOINT } from "../constants";
 import { MenuIcon } from "../icons";
 import { inferEnv } from "../util";
 
 const Content = styled.div`
+  position: absolute;
+  min-height: 100%;
+  width: 100%;
+  left: 0;
+
+  @media ${BREAKPOINT.tablet} {
+    left: ${SIDEBAR_WIDTH_PX}px;
+    width: calc(100% - ${SIDEBAR_WIDTH_PX}px);
+
+    &::after {
+      display: none;
+    }
+  }
+
   &::after {
     content: "";
     filter: blur(0px);
@@ -14,10 +28,11 @@ const Content = styled.div`
     height: 100%;
     position: absolute;
     top: 0;
-    bottom: 0;
+    left: 0;
     background: black;
     opacity: ${({ sidebarVisible }) => sidebarVisible ? 0.6 : 0};
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
+    z-index: ${({ sidebarVisible }) => sidebarVisible ? 0 : -2};
   }
 `
 

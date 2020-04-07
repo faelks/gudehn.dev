@@ -3,7 +3,6 @@ import { COLOUR, FONT } from "../constants";
 
 export const GlobalStyle = createGlobalStyle`
   html, body {
-    background-color: ${COLOUR.primary};
     color: ${COLOUR.darkText};
     font-family: ${FONT.secondary};
     min-height: 100%;

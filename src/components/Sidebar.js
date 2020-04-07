@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { Row, Stack } from "../components";
-import { COLOUR, SIDEBAR_WIDTH_PX } from "../constants";
+import { COLOUR, SIDEBAR_WIDTH_PX, BREAKPOINT } from "../constants";
 import { HomeIcon, OpenArmIcon, QuillIcon, TerminalBoxIcon } from "../icons";
 
 const defaultSidebarPages = [
@@ -42,6 +42,10 @@ const SidebarContainer = styled.div`
   background-color: ${COLOUR.mono[16]};
   transition: all 0.25s ease-in-out;
   z-index: 1;
+
+  @media ${BREAKPOINT.tablet} {
+    left: 0;
+  }
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
