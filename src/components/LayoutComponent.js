@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import { GlobalStyle, Sidebar } from ".";
-import { COLOUR, SCREEN_SIZE, SIDEBAR_WIDTH_PX } from "../constants";
+import { GlobalStyle, Sidebar, Fab } from ".";
+import { COLOUR, SCREEN_SIZE } from "../constants";
 import { MenuIcon } from "../icons";
 import { inferEnv } from "../util";
 
@@ -19,19 +19,6 @@ const Content = styled.div`
     opacity: ${({ sidebarVisible }) => sidebarVisible ? 0.6 : 0};
     transition: opacity 0.3s ease-in-out;
   }
-`
-
-const Fab = styled.div`
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
-  border: 1px solid ${COLOUR.secondary};
-  text-align: center;
-  line-height: 40px;
-  font-size: 25px;
 `
 
 const Background = styled.div`

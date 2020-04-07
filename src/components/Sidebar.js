@@ -71,7 +71,7 @@ export const Sidebar = ({ links, isOpen }) => {
     <SidebarContainer open={isOpen}>
       <Stack margin="large">
         {sidebarPages.map(({ path, title, icon }) => (
-          <SidebarRow key={path + title} justify="left" margin="small" yPadding="small" xPadding="large">
+          <SidebarRow key={path + title} justify="left" margin="medium" yPadding="small" xPadding="large">
             {icon}
             <StyledLink to={path}>
               {title}

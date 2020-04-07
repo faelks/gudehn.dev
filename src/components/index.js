@@ -7,4 +7,5 @@ export * from "./PostsTable";
 export * from "./Sidebar";
 export * from "./Stack";
 export * from "./Row";
+export * from "./Fab";
 
