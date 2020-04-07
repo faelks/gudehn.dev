@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "gatsby";
 
 export const PostsTable = ({ posts }) => {
-  console.log(posts);
+
   return (
     <div>
       Total posts: {posts.length}
@@ -9,6 +10,7 @@ export const PostsTable = ({ posts }) => {
         <div key={post.node.id}>
           <h2>{post.node.frontmatter.title} ({post.node.fields.slug})</h2>
           <p>{post.node.frontmatter.date}</p>
+          <Link to={post.node.fields.slug}>{post.node.frontmatter.title}</Link>
         </div>
       ))}
     </div>
