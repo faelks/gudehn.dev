@@ -1,21 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-import { Layout } from "../components";
-import { COLOUR } from "../constants";
-
-const Heading = styled.h2`
-  margin: 0;
-  font-family: Georgia, serif;
-  font-size: 32px;
-  font-weight: bold;
-  color: ${COLOUR.darkText};
-`;
+import { Layout, Header, Stack, Container } from "../components";
 
 export default () => (
   <Layout>
-    <Heading>Blog</Heading>
-    <p>Some post about Tailwind</p>
-    <p>Some post about Cypress</p>
-    <p>Some post about Jest</p>
+    <Header title="Blog Posts" />
+    <Container padding="small">
+      <Stack>
+        <p>Some post about Tailwind</p>
+        <p>Some post about Cypress</p>
+        <p>Some post about Jest</p>
+      </Stack>
+    </Container>
   </Layout>
 )

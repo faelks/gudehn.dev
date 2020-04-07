@@ -1,18 +1,18 @@
-import React from "react";
 import { Link } from "gatsby";
+import React from "react";
+import { Stack, Card } from ".";
 
 export const PostsTable = ({ posts }) => {
 
   return (
-    <div>
-      Total posts: {posts.length}
+    <Stack margin="medium">
       {posts.map(post => (
-        <div key={post.node.id}>
-          <h2>{post.node.frontmatter.title} ({post.node.fields.slug})</h2>
+        <Card key={post.node.id}>
+          <h4>{post.node.frontmatter.title} ({post.node.fields.slug})</h4>
           <p>{post.node.frontmatter.date}</p>
           <Link to={post.node.fields.slug}>{post.node.frontmatter.title}</Link>
-        </div>
+        </Card>
       ))}
-    </div>
+    </Stack>
   )
 }
