@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import { COLOUR, SCREEN_SIZE } from "../constants";
 
@@ -93,6 +94,11 @@ export const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Felix Gudéhn</title>
+        <link rel="canonical" href="https://felix.gudehn.dev/" />
+      </Helmet>
       <Sidebar visible={displaySidebar}>
         <ul>
           {sidebarPages.map(([pagePath, pageTitle]) => (
