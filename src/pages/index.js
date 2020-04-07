@@ -26,7 +26,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query MyQuery {
+  query IndexPageQuery {
     allMarkdownRemark {
       totalCount
       edges {

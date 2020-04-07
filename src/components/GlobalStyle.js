@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     background-color: ${COLOUR.primary};
     color: ${COLOUR.darkText};
+    font-family: ${FONT.secondary};
     margin: 0;
     padding: 0;
   }

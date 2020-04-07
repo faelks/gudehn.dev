@@ -1,15 +1,34 @@
 import React from "react";
-import { Layout, Header, Stack, Container } from "../components";
+import { Container, Header, Layout, Stack, PostsTable } from "../components";
 
-export default () => (
+export default ({ data }) => (
   <Layout>
     <Header title="Blog Posts" />
     <Container padding="small">
       <Stack>
-        <p>Some post about Tailwind</p>
-        <p>Some post about Cypress</p>
-        <p>Some post about Jest</p>
+        <PostsTable posts={data.allMarkdownRemark.edges} />
       </Stack>
     </Container>
   </Layout>
 )
+
+export const query = graphql`
+  query BlogPageQuery {
+    allMarkdownRemark {
+      totalCount
+      edges {
+        node {
+          id
+          html
+          frontmatter {
+            date
+            title
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`
