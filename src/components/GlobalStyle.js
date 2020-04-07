@@ -20,9 +20,13 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: ${FONT.primary};
     font-weight: 550;
+    margin: 0;
+    padding: 0;
   }
 
   p, li, span, a {
     font-family: ${FONT.secondary};
+    margin: 0;
+    padding: 0;
   }
 `
