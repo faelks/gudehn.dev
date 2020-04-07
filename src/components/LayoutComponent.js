@@ -7,12 +7,18 @@ import { MenuIcon } from "../icons";
 import { inferEnv } from "../util";
 
 const Content = styled.div`
-  /* background: linear-gradient(130deg, ${COLOUR.primary} 60%, ${COLOUR.shadedBackground}); */
-  /* height: 100%;
-  width: 100%; */
-  /* width: ${({ sidebarVisible }) => sidebarVisible ? `calc(100% - ${SIDEBAR_WIDTH_PX}px)` : "100%"}; */
-  /* top: 0; */
-  /* left: ${({ sidebarVisible }) => sidebarVisible ? `${SIDEBAR_WIDTH_PX}px` : 0}; */
+  &::after {
+    content: "";
+    filter: blur(0px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: black;
+    opacity: ${({ sidebarVisible }) => sidebarVisible ? 0.6 : 0};
+    transition: opacity 0.3s ease-in-out;
+  }
 `
 
 const Fab = styled.div`

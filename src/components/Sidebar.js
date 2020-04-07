@@ -39,7 +39,9 @@ const SidebarContainer = styled.div`
   align-items: start;
   flex-direction: column;
   border-right: 1px solid ${COLOUR.secondary};
-  background-color: ${COLOUR.mono[17]};
+  background-color: ${COLOUR.mono[16]};
+  transition: all 0.25s ease-in-out;
+  z-index: 1;
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
