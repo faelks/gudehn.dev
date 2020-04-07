@@ -3,22 +3,16 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { GlobalStyle, Sidebar } from ".";
 import { COLOUR, SCREEN_SIZE, SIDEBAR_WIDTH_PX } from "../constants";
+import { MenuIcon } from "../icons";
 import { inferEnv } from "../util";
 
-const sidebarPages = [
-  ["/", "Felix Gudéhn"],
-  ["/projects", "Projects"],
-  ["/blog", "Blog"],
-  ["/about", "About"],
-];
-
 const Content = styled.div`
-  background: linear-gradient(130deg, ${COLOUR.primary} 60%, ${COLOUR.shadedBackground});
-  position: fixed;
-  height: 100%;
-  width: ${({ sidebarVisible }) => sidebarVisible ? `calc(100% - ${SIDEBAR_WIDTH_PX}px)` : "100%"};
-  top: 0;
-  left: ${({ sidebarVisible }) => sidebarVisible ? `${SIDEBAR_WIDTH_PX}px` : 0};
+  /* background: linear-gradient(130deg, ${COLOUR.primary} 60%, ${COLOUR.shadedBackground}); */
+  /* height: 100%;
+  width: 100%; */
+  /* width: ${({ sidebarVisible }) => sidebarVisible ? `calc(100% - ${SIDEBAR_WIDTH_PX}px)` : "100%"}; */
+  /* top: 0; */
+  /* left: ${({ sidebarVisible }) => sidebarVisible ? `${SIDEBAR_WIDTH_PX}px` : 0}; */
 `
 
 const Fab = styled.div`
@@ -34,6 +28,16 @@ const Fab = styled.div`
   font-size: 25px;
 `
 
+const Background = styled.div`
+  background: linear-gradient(130deg, ${COLOUR.primary} 60%, ${COLOUR.shadedBackground});
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`
+
 export const Layout = ({ children }) => {
   const env = inferEnv();
   const pageTitle = inferEnv() === "development" ? "gudehn.dev 🏗" : "Felix Gudéhn";
@@ -41,6 +45,8 @@ export const Layout = ({ children }) => {
 
   const [displaySidebar, setDisplaySidebar] = useState(initialDisplaySidebar);
 
+  const showSidebar = () => setDisplaySidebar(true);
+  const hideSidebar = () => setDisplaySidebar(false);
 
   return (
     <>
@@ -51,12 +57,13 @@ export const Layout = ({ children }) => {
         <link rel="canonical" href="https://felix.gudehn.dev/" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,700;1,400&family=Podkova:wght@500;700&display=swap" rel="stylesheet" />
       </Helmet>
-      <Sidebar isOpen={displaySidebar} links={sidebarPages} />
-      <Content sidebarVisible={displaySidebar} onClick={() => setDisplaySidebar(false)}>
+      <Sidebar isOpen={displaySidebar} />
+      <Background onClick={hideSidebar} />
+      <Content sidebarVisible={displaySidebar} onClick={hideSidebar}>
         {children}
       </Content>
       {!displaySidebar && (
-        <Fab onClick={() => setDisplaySidebar(true)} />
+        <Fab onClick={showSidebar}><MenuIcon /></Fab>
       )}
     </>
   )

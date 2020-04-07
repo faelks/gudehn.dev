@@ -1,5 +1,6 @@
+import { graphql } from "gatsby";
 import React from "react";
-import { Container, Header, Layout, Stack, PostsTable } from "../components";
+import { Container, Header, Layout, PostsTable, Stack } from "../components";
 
 export default ({ data }) => (
   <Layout>

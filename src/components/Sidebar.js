@@ -1,7 +1,32 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import { Row, Stack } from "../components";
 import { COLOUR, SIDEBAR_WIDTH_PX } from "../constants";
+import { HomeIcon, OpenArmIcon, QuillIcon, TerminalBoxIcon } from "../icons";
+
+const defaultSidebarPages = [
+  {
+    path: "/",
+    title: "Felix Gudéhn",
+    icon: <HomeIcon />
+  },
+  {
+    path: "/projects",
+    title: "Projects",
+    icon: <TerminalBoxIcon />
+  },
+  {
+    path: "/blog",
+    title: "Blog",
+    icon: <QuillIcon />
+  },
+  {
+    path: "/about",
+    title: "About",
+    icon: <OpenArmIcon />
+  }
+]
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -14,39 +39,44 @@ const SidebarContainer = styled.div`
   align-items: start;
   flex-direction: column;
   border-right: 1px solid ${COLOUR.secondary};
-  background-color: ${COLOUR.mono[16]};
+  background-color: ${COLOUR.mono[17]};
 `
 
-const SidebarLinks = styled.ul`
-  width: 100%;
-`
-
-const SidebarLink = styled(props => <Link {...props} />)`
+const StyledLink = styled(props => <Link {...props} />)`
   color: ${COLOUR.secondary};
   background-color: transparent;
   text-decoration: none;
+  font-size: 18px;
+  line-height: 18px;
 `
 
-const SidebarLinkContainer = styled.li`
-  padding: 10px 20px;
+const SidebarRow = styled(props => <Row {...props} />)`
   border-bottom: 1px solid ${COLOUR.secondary};
+
+  & > svg {
+    fill: ${COLOUR.secondary};
+  }
+
+  & > * {
+    color: ${COLOUR.secondary};
+  }
 `
-
-const SidebarItem = ({ pagePath, pageTitle }) => (
-  <SidebarLinkContainer>
-    <SidebarLink to={pagePath} children={pageTitle} />
-  </SidebarLinkContainer>
-)
-
 
 export const Sidebar = ({ links, isOpen }) => {
+  const sidebarPages = links || defaultSidebarPages;
+
   return (
     <SidebarContainer open={isOpen}>
-      <SidebarLinks>
-        {links.map(([pagePath, pageTitle]) => (
-          <SidebarItem key={pageTitle} pagePath={pagePath} pageTitle={pageTitle} />
+      <Stack margin="large">
+        {sidebarPages.map(({ path, title, icon }) => (
+          <SidebarRow key={path + title} justify="left" margin="small" yPadding="small" xPadding="large">
+            {icon}
+            <StyledLink to={path}>
+              {title}
+            </StyledLink>
+          </SidebarRow>
         ))}
-      </SidebarLinks>
+      </Stack>
     </SidebarContainer>
   )
 }

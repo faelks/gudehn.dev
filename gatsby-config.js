@@ -21,7 +21,7 @@ module.exports = {
         start_url: "/",
         background_color: "#fafafa",
         theme_color: "#fafafa",
-        icon: "static/koala-512x512.png",
+        icon: "src/assets/koala-512x512.png",
       },
     },
 
@@ -33,5 +33,15 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+
+    // Allow importing .svg as react components
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\.svg$/ 
+        }
+      }
+    }
   ],
 }

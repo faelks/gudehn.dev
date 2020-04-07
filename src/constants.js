@@ -1,4 +1,4 @@
-export const SIDEBAR_WIDTH_PX = 150;
+export const SIDEBAR_WIDTH_PX = 180;
 
 export const COLOUR = {
   primary: "#fafafa",

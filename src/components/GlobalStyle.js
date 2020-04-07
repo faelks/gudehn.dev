@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${COLOUR.primary};
     color: ${COLOUR.darkText};
     font-family: ${FONT.secondary};
+    min-height: 100%;
     margin: 0;
     padding: 0;
   }
