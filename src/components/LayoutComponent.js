@@ -73,9 +73,9 @@ export const Layout = ({ children }) => {
       <Content sidebarVisible={displaySidebar} onClick={hideSidebar}>
         {children}
       </Content>
-      {!displaySidebar && (
-        <Fab onClick={showSidebar}><MenuIcon /></Fab>
-      )}
+      <Fab hide={displaySidebar} hideBreakpoint="tablet" onClick={showSidebar}>
+        <MenuIcon />
+      </Fab>
     </>
   )
 }
