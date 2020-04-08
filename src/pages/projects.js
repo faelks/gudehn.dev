@@ -54,7 +54,6 @@ export default () => (
               {link && <a href={link}>repo</a>}
             </Row>
             <p>{description}</p>
-
           </ProjectCard>
         ))}
       </Stack>

@@ -7,29 +7,8 @@ export default ({ data }) => (
     <Header title="Blog Posts" />
     <Container padding="small">
       <Stack>
-        <PostsTable posts={data.allMarkdownRemark.edges} />
+        <PostsTable />
       </Stack>
     </Container>
   </Layout>
 )
-
-export const query = graphql`
-  query BlogPageQuery {
-    allMarkdownRemark {
-      totalCount
-      edges {
-        node {
-          id
-          html
-          frontmatter {
-            date
-            title
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
-  }
-`

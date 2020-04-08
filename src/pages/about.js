@@ -1,11 +1,5 @@
 import React from "react";
-import { Container, Header, Layout, Stack } from "../components";
-import styled from "styled-components";
-
-const TextBlock = styled.p`
-  line-height: 1.75em;
-  letter-spacing: 1.1;
-`;
+import { Container, Header, Layout, Stack, TextBlock } from "../components";
 
 export default () => (
   <Layout>
@@ -24,11 +18,11 @@ export default () => (
         <TextBlock>
           Because of the current global situation with COVID-19 I have been required to bring forward
           my plans for the year, and will be moving to my home country again to either pursue a Master's Degree
-          in Computer Science or potentially to pursue other Software Engineering roles. This means that I am 
+          in Computer Science or potentially to pursue other Software Engineering roles. This means that I am
           available for whatever cool projects &amp; challenges thrown my way for the next couple of months.
         </TextBlock>
         <TextBlock>
-          If you are in need of a Developer with industry experience or if you just want to say hi feel free to reach 
+          If you are in need of a Developer with industry experience or if you just want to say hi feel free to reach
           out via <a href="mailto:felix.gudehn@gmail.com">email</a>.
         </TextBlock>
       </Stack>

@@ -8,4 +8,4 @@ export * from "./Sidebar";
 export * from "./Stack";
 export * from "./Row";
 export * from "./Fab";
-
+export * from "./Text";
