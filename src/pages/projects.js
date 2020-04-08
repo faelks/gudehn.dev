@@ -48,7 +48,7 @@ export default () => (
     <Container padding="medium">
       <Stack margin="small">
         {projects.map(({ title, description, link }) => (
-          <ProjectCard>
+          <ProjectCard key={title}>
             <Row margin="small">
               <h4>{title}</h4>
               {link && <a href={link}>repo</a>}
