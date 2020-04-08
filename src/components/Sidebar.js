@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { Row, Stack } from "../components";
+import { Row, Stack, ContactIcons } from "../components";
 import { COLOUR, SIDEBAR_WIDTH_PX, BREAKPOINT } from "../constants";
 import { HomeIcon, OpenArmIcon, QuillIcon, TerminalBoxIcon } from "../icons";
 
@@ -35,7 +35,6 @@ const SidebarContainer = styled.div`
   width: ${SIDEBAR_WIDTH_PX - 1}px;
   top: 0;
   left: ${({ open }) => (open ? 0 : `-${SIDEBAR_WIDTH_PX}px`)};
-  padding-top: 30px;
   align-items: start;
   flex-direction: column;
   border-right: 1px solid ${COLOUR.secondary};
@@ -90,20 +89,28 @@ export const Sidebar = ({ links, isOpen }) => {
 
   return (
     <SidebarContainer open={isOpen}>
-      <Stack margin="large">
-        {sidebarPages.map(({ path, title, icon }) => (
-          <StyledLink to={path} key={path + title}>
-            <SidebarRow
-              justify="left"
-              margin="medium"
-              yPadding="small"
-              xPadding="large"
-            >
-              {icon}
-              <LinkTitle>{title}</LinkTitle>
-            </SidebarRow>
-          </StyledLink>
-        ))}
+      <Stack justify="space-between" grow={true} fill="true">
+        <Stack margin="large" yPadding="large">
+          {sidebarPages.map(({ path, title, icon }) => (
+            <StyledLink to={path} key={path + title}>
+              <SidebarRow
+                justify="left"
+                margin="medium"
+                yPadding="small"
+                xPadding="large"
+              >
+                {icon}
+                <LinkTitle>{title}</LinkTitle>
+              </SidebarRow>
+            </StyledLink>
+          ))}
+        </Stack>
+        <ContactIcons
+          margin="medium"
+          justify="center"
+          wrap="true"
+          xPadding="xxlarge"
+        />
       </Stack>
     </SidebarContainer>
   );

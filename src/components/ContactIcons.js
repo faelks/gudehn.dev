@@ -21,13 +21,13 @@ const IconLink = styled.a`
 
     &:hover {
       transform: translateY(1px);
-      fill: ${COLOUR.highlight}
+      fill: ${COLOUR.highlight};
     }
   }
 `;
 
-export const ContactIcons = () => (
-  <Row margin="medium">
+export const ContactIcons = props => (
+  <Row {...props}>
     <IconLink href="https://www.linkedin.com/in/felixgudehn/">
       <LinkedInIcon />
     </IconLink>

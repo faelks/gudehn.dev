@@ -70,5 +70,6 @@ export const PADDING = {
   small: 3,
   medium: 5,
   large: 10,
-  xlarge: 20
+  xlarge: 20,
+  xxlarge: 30
 }

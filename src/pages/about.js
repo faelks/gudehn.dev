@@ -37,7 +37,7 @@ export default () => (
           just want to say hi feel free to reach out via{" "}
           <a href="mailto:felix.gudehn@gmail.com">email</a>.
         </TextBlock>
-        <ContactIcons />
+        <ContactIcons margin="medium" />
       </Stack>
     </Container>
   </Layout>
