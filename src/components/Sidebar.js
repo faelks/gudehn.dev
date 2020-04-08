@@ -9,24 +9,24 @@ const defaultSidebarPages = [
   {
     path: "/",
     title: "Felix Gudéhn",
-    icon: <HomeIcon />
+    icon: <HomeIcon />,
   },
   {
     path: "/projects",
     title: "Projects",
-    icon: <TerminalBoxIcon />
+    icon: <TerminalBoxIcon />,
   },
   {
     path: "/blog",
     title: "Blog",
-    icon: <QuillIcon />
+    icon: <QuillIcon />,
   },
   {
     path: "/about",
     title: "About",
-    icon: <OpenArmIcon />
-  }
-]
+    icon: <OpenArmIcon />,
+  },
+];
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const SidebarContainer = styled.div`
   height: 100%;
   width: ${SIDEBAR_WIDTH_PX - 1}px;
   top: 0;
-  left: ${({ open }) => open ? 0 : `-${SIDEBAR_WIDTH_PX}px`};
+  left: ${({ open }) => (open ? 0 : `-${SIDEBAR_WIDTH_PX}px`)};
   padding-top: 30px;
   align-items: start;
   flex-direction: column;
@@ -46,11 +46,11 @@ const SidebarContainer = styled.div`
   @media ${BREAKPOINT.tablet} {
     left: 0;
   }
-`
+`;
 
 const StyledLink = styled(props => <Link {...props} />)`
   text-decoration: none;
-`
+`;
 
 const LinkTitle = styled.h2`
   background-color: transparent;
@@ -58,10 +58,11 @@ const LinkTitle = styled.h2`
   font-size: 18px;
   line-height: 18px;
 
-  &:active, &:hover {
+  &:active,
+  &:hover {
     text-decoration: none;
   }
-`
+`;
 
 const SidebarRow = styled(props => <Row {...props} />)`
   border-bottom: 1px solid ${COLOUR.secondary};
@@ -82,7 +83,7 @@ const SidebarRow = styled(props => <Row {...props} />)`
       color: ${COLOUR.highlight};
     }
   }
-`
+`;
 
 export const Sidebar = ({ links, isOpen }) => {
   const sidebarPages = links || defaultSidebarPages;
@@ -91,8 +92,13 @@ export const Sidebar = ({ links, isOpen }) => {
     <SidebarContainer open={isOpen}>
       <Stack margin="large">
         {sidebarPages.map(({ path, title, icon }) => (
-          <StyledLink to={path}>
-            <SidebarRow key={path + title} justify="left" margin="medium" yPadding="small" xPadding="large">
+          <StyledLink to={path} key={path + title}>
+            <SidebarRow
+              justify="left"
+              margin="medium"
+              yPadding="small"
+              xPadding="large"
+            >
               {icon}
               <LinkTitle>{title}</LinkTitle>
             </SidebarRow>
@@ -100,5 +106,5 @@ export const Sidebar = ({ links, isOpen }) => {
         ))}
       </Stack>
     </SidebarContainer>
-  )
-}
+  );
+};
