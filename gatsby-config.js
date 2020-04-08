@@ -7,7 +7,32 @@ module.exports = {
     `gatsby-plugin-styled-components`,
 
     // For parsing .md files as blog posts
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
+    },
+
+    // For managing images in gatsby
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 75,
+      },
+    },
 
     // Manage the meta data in the head element on pages
     `gatsby-plugin-react-helmet`,
