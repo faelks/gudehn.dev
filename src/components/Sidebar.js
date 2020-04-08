@@ -49,22 +49,38 @@ const SidebarContainer = styled.div`
 `
 
 const StyledLink = styled(props => <Link {...props} />)`
-  color: ${COLOUR.secondary};
+  text-decoration: none;
+`
+
+const LinkTitle = styled.h2`
   background-color: transparent;
   text-decoration: none;
   font-size: 18px;
   line-height: 18px;
+
+  &:active, &:hover {
+    text-decoration: none;
+  }
 `
 
 const SidebarRow = styled(props => <Row {...props} />)`
   border-bottom: 1px solid ${COLOUR.secondary};
+  cursor: pointer;
 
   & > svg {
     fill: ${COLOUR.secondary};
   }
-
-  & > * {
+  & > h2 {
     color: ${COLOUR.secondary};
+  }
+
+  &:hover {
+    & > svg {
+      fill: ${COLOUR.highlight};
+    }
+    & > h2 {
+      color: ${COLOUR.highlight};
+    }
   }
 `
 
@@ -75,12 +91,12 @@ export const Sidebar = ({ links, isOpen }) => {
     <SidebarContainer open={isOpen}>
       <Stack margin="large">
         {sidebarPages.map(({ path, title, icon }) => (
-          <SidebarRow key={path + title} justify="left" margin="medium" yPadding="small" xPadding="large">
-            {icon}
-            <StyledLink to={path}>
-              {title}
-            </StyledLink>
-          </SidebarRow>
+          <StyledLink to={path}>
+            <SidebarRow key={path + title} justify="left" margin="medium" yPadding="small" xPadding="large">
+              {icon}
+              <LinkTitle>{title}</LinkTitle>
+            </SidebarRow>
+          </StyledLink>
         ))}
       </Stack>
     </SidebarContainer>

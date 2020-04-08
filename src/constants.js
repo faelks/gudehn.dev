@@ -4,6 +4,7 @@ export const CONTENT_MAX_WIDTH_PX = 900;
 export const COLOUR = {
   primary: "#fafafa",
   secondary: "#2831b5",
+  highlight: "#6a73f3",
   darkText: "#131313",
   lightText: "#fcfcfc",
   shadedBackground: "#bababa",
