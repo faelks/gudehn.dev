@@ -1,4 +1,5 @@
 export const SIDEBAR_WIDTH_PX = 200;
+export const CONTENT_MAX_WIDTH_PX = 900;
 
 export const COLOUR = {
   primary: "#fafafa",

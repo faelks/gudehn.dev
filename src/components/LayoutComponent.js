@@ -11,6 +11,9 @@ const Content = styled.div`
   min-height: 100%;
   width: 100%;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media ${BREAKPOINT.tablet} {
     left: ${SIDEBAR_WIDTH_PX}px;

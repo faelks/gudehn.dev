@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { PADDING } from "../constants";
+import { PADDING, CONTENT_MAX_WIDTH_PX } from "../constants";
 
 export const Container = styled.div`
-  max-width: 900px;
+  max-width: ${CONTENT_MAX_WIDTH_PX}px;
   padding: ${({ padding }) => PADDING[padding] || 0}px;
 `
