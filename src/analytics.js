@@ -3,8 +3,15 @@ import { inferEnv } from "./util";
 async function getIpAddress() {
   const ipinfoToken = "bd13d1a9226c74";
   const ipinfoUrl = `https://ipinfo.io/json?token=${ipinfoToken}`;
-  const result = await fetch(ipinfoUrl);
-  return await result.json();
+
+  try {
+    const result = await fetch(ipinfoUrl);
+    return await result.json();
+  } catch (e) {
+    return Promise.resolve({
+      message: `Failed to fetch ip data: ${e.message}`,
+    });
+  }
 }
 
 async function sendDataToDb(data) {
@@ -17,19 +24,28 @@ async function sendDataToDb(data) {
     },
     body: JSON.stringify(data),
   });
-  const response = await rawResponse.json();
+  await rawResponse.json();
+}
 
-  console.log("API Response", response);
+function getNavigatorData() {
+  if (typeof navigator !== "undefined") {
+    const { userAgent, platform } = navigator;
+    return {
+      userAgent,
+      platform,
+    };
+  } else {
+    return {};
+  }
 }
 
 export async function sendAnalytics() {
   const ipInfo = await getIpAddress();
-  const { userAgent, platform } = navigator;
+  const navigatorData = getNavigatorData();
 
   const analyticsData = {
     ...ipInfo,
-    userAgent,
-    platform,
+    ...navigatorData,
   };
 
   if (inferEnv() === "production") {
