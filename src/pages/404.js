@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Header,
-  Layout,
-  PostsTable,
-  Stack,
-  SubHeading,
-} from "../components";
+import { Container, Header, Layout, PostsTable, Stack } from "../components";
 
 export default () => (
   <Layout>
