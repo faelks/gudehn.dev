@@ -1,6 +1,6 @@
 import { graphql } from "gatsby";
 import React from "react";
-import { Layout, Header, Container, Stack } from "../components";
+import { Layout, Header, Container } from "../components";
 import styled from "styled-components";
 
 const Markdown = styled.div`
