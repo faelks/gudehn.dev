@@ -9,6 +9,9 @@ async function getIpAddress() {
 }
 
 export async function sendAnalytics() {
+
+  console.log(process.env.TEST);
+
   const ipInfo = await getIpAddress();
   const { userAgent, platform } = navigator;
 
