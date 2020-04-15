@@ -52,12 +52,12 @@ const ProjectCard = styled.div`
 
 export default () => {
   useEffect(() => {
-    console.log(addTouchAnimation);
-    const touchAnimateProjectCard = document.getElementById("touch-animate");
-    addTouchAnimation(touchAnimateProjectCard, {
-      duration: 500,
+    addTouchAnimation({
+      element: document.getElementById("touch-animate"),
+      duration: 800,
       colour: COLOUR.secondary,
-      radius: 50,
+      steps: 100,
+      radius: 60,
       type: "particle",
     });
   }, []);
