@@ -23,20 +23,7 @@ const projects = [
     id: "hippo-health",
     description: "A (now abandoned) attempt to create a hospital companion app",
     link: "https://github.com/hippo-health",
-  },
-  {
-    title: "Huus",
-    id: "huus",
-    description:
-      "An unfinished prototype for storing and managing receipts in a household",
-    link: "https://github.com/faelks/huus",
-  },
-  {
-    title: "Hamster Service",
-    id: "hamster-service",
-    description: "Automated email delivery service for hamster pictures",
-    link: null,
-  },
+  }
 ];
 
 const ProjectCard = styled.div`
