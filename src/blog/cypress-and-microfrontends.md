@@ -1,43 +1,24 @@
 ---
 title: "Cypress and Microfrontends"
-date: "2020-04"
+date: "2020-04-22"
 ---
 
 Cypress is a new, hip, tool for writing and running end to end tests. How well does it play with complex websites consisting out of multiple parts?
 
-Topics: 
-  - Cypress
-  - User Acceptance Testing
-  - End to End Testing
-  - Iframes
-  - Microfrontends
-  - The postMessage API
-  - Vertical Stack Apps
+If you've ever worked on a large web application you know that changes can be scary. This is because when you try and change something, that could inadvertently break some other part of the application without you knowing, unless you have a very good and solid knowledge of how the application works. This is why high level tests are so crucial for software development. If you have good, reliable tests that you and the the people you work with trust then you can deploy changes quicker and with confidence. 
 
-Resources: 
-  - [Cypress](https://www.cypress.io/)
-  - [Kent C. Dodds - Write Tests](https://kentcdodds.com/blog/write-tests)
-  - [UserSnap - User Accepance Testing](https://usersnap.com/blog/user-acceptance-testing-right/)
-  - [MDN - iframes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
-  - [Martin Fowler - Microfrontends](https://martinfowler.com/articles/micro-frontends.html)
-  - [micro-frontends.org](https://micro-frontends.org/)
+My first foray into the world of [user acceptance testing](https://kentcdodds.com/blog/write-tests) was when I started my first software engineering job as a Graduate Developer. My first project was to replace their old [Selenium](https://www.selenium.dev/documentation/en/) test suite with tests written with the newly released [Cypress](https://www.cypress.io/), which some people called a better version, a successor of sorts to the old Java based Selenium. 
 
+I set out to replace the old test suite, but first I needed to understand how Cypress works and how to use it to write tests. I dug through the docs and then once I felt comfortable I tried writing my first couple of tests. These were fairly basic happy path tests which tried to answer the question: "Is this feature of our application still working?". The main things to test in the case of a e-commerce site like the one I was working on was user authentication like login and create account, completing a purchase, adding items to bag and general navigation around the website.
 
-Themes: 
-  - Cypress is awesome
-  - Complex websites are harder to trust
-  - Iframes do not like Cypress
-  - Hard to 'get' complicated functionality
+I quickly realised that there was a lot of things I did not know about the web application since I was getting a lot of unexpected behaviour. Sometimes the tests worked fine when running in my development environment, but when running against our testing environment it would fail for various reasons. Sometimes logins would not work, other times I got strange server responses, and sometimes the tests just would stall on some arbitrary part of the current test, such as a page load. This was, as I'm sure you can imagine, quite frustrating and time consuming. Luckily for me [Cypress provides video capture](https://docs.cypress.io/guides/guides/screenshots-and-videos.html) of all the tests running which can be used to get a better feel for **how** the tests were failing.
 
-Points:
-  - ... we had a complex website, there was a foundation which was a e-commerce framework which was mixed with various, independently hosted applications.
-  - ... Cypress is a pleasure to work with, when things are fast and reliable
-  - ... Continuous Integration (CI) pipelines like Jenkins sometimes caused unexpected behaviour
-  - ... Figure out what to stub, and how much you can get rid of.
-  - ... Cypress is implemented with iframes, if you run your test suite in the Cypress GUI you can inspect and see that you have at least two frames, one for your app and one for your test suite.
-  - ... in our case, using the postMessage API was necessary since that is how we implemented the iframe to top level context communication ...
-  - ... It is very important to strike a balance between reliability and speed ...
-  - ... reliability in terms of when a test runs and fails you would rather trust the test than the website ...
-  - ... if you stub out too much of your system then your test is less and less reliable; if you run the test against your production site and the test passes, you can be fairly confident that things are working. (Although it can be wise to always be a bit skeptic) ...
-  - ... Microfrontends are interesting because you can change, test and deploy a part of your website individually which can help you release features quicker, but at the same time you are introducing a lot more integration points, places where things can break ...
-  - ... Proper user acceptance tests can be used to test the parts in isolation and then in integration, it is like a higher level version of the more common unit and integration tests with which I think most developers are comfortable with ...
+The web application I was working on was very complex in the sense that there were many different smaller applications working together to prouce the final output. You could maybe call it a [microfrontend setup](https://martinfowler.com/articles/micro-frontends.html), a very basic one, where we had a e-commerce framework responsible for routing and content management combined with a number of independently hosted applications that were embedded into the HTML responses using [iframes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
+
+Iframes are cool, and they can be very useful in a lot of different contexts. That doesn't mean you should use them everywhere however. You can think of them as 'mini-websites' embedded into a top-level website, they have their own `src` and JS context. The problem with this is that they [do not play well with Cypress](https://www.cypress.io/blog/2020/02/12/working-with-iframes-in-cypress/). The nice route stubbing and other features that Cypress provides are not useable within the iframe contexts. That means that if you have a shopping cart feature on your website that is embedded via iframe, then you can't stub out requests issued from within that context. Now if you have multiple of those iframes, there could be a lot of things happening when you run Cypress, that the framework is unable to pick up on.
+
+The intial set of tests that I wrote were at the highest level, an out-of-band process ran against our test environment and navigated around on the website, asserting on behaviour. These tests ran on the same 'layer' as the users that use our website. If a feature doesn't work when running these tests, then we can't reasonably expect the feature to work for users either. Unless the tests are **flaky and unreliable**. Our first version of user acceptance tests were just that: flaky and unreliable. Because the test suite was not reliable, the team did not trust the results and this led to manual verification and sometimes even errors in production which could have been caught by a reliable test suite.
+
+We eventually got to the point where we rewrote a lot of the tests, once I had more experience with the codebase. The second time around we decided that to get more reliable tests we should build the test from the ground up: write reliable tests for the applications in isolation and then write a few high level integration tests that confirm that things are working together. Does that sound familiar? That's because it is just like unit and integration tests that developers write every day to test lower level components. We write 'unit acceptance tests' where certain requests are stubbed out to test the individual applications at the highest level. Then we write a few 'integration acceptance tests' which confirm that these distinct units and their integration points are working as expected. This approach led to a much more reliable and fast running test suite. Instead of running acceptance tests only on the whole website, we run them as part of the build pipeline for the different parts first. 
+
+To conclude, we write tests to make changes with confidence. But there is a balance that one must find when it comes to reliability. If you stub out too much of your system then your test is less and less reliable; if you run the test against a production-like site and the test passes, you can be fairly confident that things are working, but the test could get unexpected error unless you have perfect control over your environment. 
