@@ -23,6 +23,12 @@ const projects = [
     id: "hippo-health",
     description: "A (now abandoned) attempt to create a hospital companion app",
     link: "https://github.com/hippo-health",
+  },
+  {
+    title: "Calculator",
+    id: "calc",
+    description: "A basic calculator app based on the samsung mobile calculator app",
+    link: "https://calc.faelks.now.sh/"
   }
 ];
 
