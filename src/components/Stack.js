@@ -9,6 +9,7 @@ export const Stack = styled.div`
   padding: ${({ xPadding, yPadding }) =>
     `${PADDING[yPadding] || 0}px ${PADDING[xPadding] || 0}px`};
   justify-content: ${({ justify }) => justify || "initial"};
+  align-items: ${({ items }) => items || "initial" };
   flex-grow: ${({ grow }) => (grow ? 1 : 0)};
 
   & > * {

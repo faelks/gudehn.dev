@@ -23,7 +23,7 @@ export function ProfileCircle({ diameter }) {
 
   return (
     <RoundContainer>
-      <ProfileImage src={ProfilePicture} />
+      <ProfileImage src={ProfilePicture} alt="Picture of me, Felix Gudéhn!" />
     </RoundContainer>
   );
 }

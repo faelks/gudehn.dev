@@ -9,19 +9,23 @@ import {
   SubHeading,
   Break,
   TextBlock,
+  ProfileCircle,
 } from "../components";
 
 export default () => {
   return (
     <Layout>
-      <Header title="Felix Gudéhn">
-        <SubHeading>
-          Work in progress{" "}
-          <span role="img" aria-label="working-emojis">
-            👷⚒⏱
-          </span>
-        </SubHeading>
-      </Header>
+      <Stack yPadding="large" items="center">
+        <ProfileCircle diameter={120} />
+        <Header title="Felix Gudéhn">
+          <SubHeading>
+            Work in progress{" "}
+            <span role="img" aria-label="working-emojis">
+              👷⚒⏱
+            </span>
+          </SubHeading>
+        </Header>
+      </Stack>
       <Container padding="small">
         <Stack xPadding="medium" margin="medium">
           <Stack margin="medium">
