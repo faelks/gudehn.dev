@@ -10,3 +10,4 @@ export * from "./Row";
 export * from "./Fab";
 export * from "./Text";
 export * from "./ContactIcons";
+export * from "./ProfileCircle";

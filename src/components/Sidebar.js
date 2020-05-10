@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { Row, Stack, ContactIcons } from "../components";
+import { Row, Stack, ContactIcons, ProfileCircle } from "../components";
 import { COLOUR, SIDEBAR_WIDTH_PX, BREAKPOINT } from "../constants";
 import { HomeIcon, OpenArmIcon, QuillIcon, TerminalBoxIcon } from "../icons";
 
@@ -91,6 +91,9 @@ export const Sidebar = ({ links, isOpen }) => {
     <SidebarContainer open={isOpen}>
       <Stack justify="space-between" grow={true} fill="true">
         <Stack margin="large" yPadding="large">
+          <Row justify="center">
+            <ProfileCircle />
+          </Row>
           {sidebarPages.map(({ path, title, icon }) => (
             <StyledLink to={path} key={path + title}>
               <SidebarRow
