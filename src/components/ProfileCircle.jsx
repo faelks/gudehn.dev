@@ -1,18 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import ProfilePicture from "../assets/profile-picture.jpeg";
-import { COLOUR } from "../constants";
+import { COLOUR, BREAKPOINT } from "../constants";
 
 const DEFAULT_DIAMETER = 90;
 
-export function ProfileCircle({ diameter }) {
+export function ProfileCircle({ diameter, breakpoint }) {
   const diameterPx = `${diameter || DEFAULT_DIAMETER}px`;
+
+  let breakpointMediaQuery = "";
+  if (breakpoint) {
+    breakpointMediaQuery = `
+      @media ${BREAKPOINT[breakpoint]} {
+        display: none;
+      }
+    `
+  }
+
 
   const RoundContainer = styled.div`
     height: ${diameterPx};
     width: ${diameterPx};
     border-radius: ${diameterPx};
     border: 1px solid ${COLOUR.secondary};
+
+    ${breakpointMediaQuery}
   `;
 
   const ProfileImage = styled.img`

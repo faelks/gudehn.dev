@@ -92,7 +92,7 @@ export const Sidebar = ({ links, isOpen }) => {
       <Stack justify="space-between" grow={true} fill="true">
         <Stack margin="large" yPadding="large">
           <Row justify="center">
-            <ProfileCircle />
+            <ProfileCircle breakpoint="tablet" />
           </Row>
           {sidebarPages.map(({ path, title, icon }) => (
             <StyledLink to={path} key={path + title}>
