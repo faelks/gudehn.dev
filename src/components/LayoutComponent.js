@@ -40,7 +40,7 @@ const Content = styled.div`
 `
 
 const Background = styled.div`
-  background: linear-gradient(130deg, ${COLOUR.mono[17]} 60%, ${COLOUR.mono[13]});
+  background: linear-gradient(130deg, ${COLOUR.mono[17]} 90%, ${COLOUR.secondary});
   position: fixed;
   top: 0;
   left: 0;
