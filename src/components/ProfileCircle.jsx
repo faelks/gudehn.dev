@@ -9,7 +9,7 @@ export function ProfileCircle({ diameter, displayBreakpoint }) {
   const diameterPx = `${diameter || DEFAULT_DIAMETER}px`;
 
   let breakpointMediaQuery = "";
-  if (breakpoint) {
+  if (displayBreakpoint) {
     breakpointMediaQuery = `
       @media ${BREAKPOINT[displayBreakpoint]} {
         display: none;

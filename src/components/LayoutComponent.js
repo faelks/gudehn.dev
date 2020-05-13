@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { Fab, GlobalStyle, Sidebar } from ".";
-import { COLOUR, SCREEN_SIZE, SIDEBAR_WIDTH_PX, BREAKPOINT } from "../constants";
+import {
+  COLOUR,
+  SCREEN_SIZE,
+  SIDEBAR_WIDTH_PX,
+  BREAKPOINT,
+} from "../constants";
 import { MenuIcon } from "../icons";
 import { inferEnv } from "../util";
 
@@ -33,26 +38,34 @@ const Content = styled.div`
     top: 0;
     left: 0;
     background: black;
-    opacity: ${({ sidebarVisible }) => sidebarVisible ? 0.6 : 0};
+    opacity: ${({ sidebarVisible }) => (sidebarVisible ? 0.6 : 0)};
     transition: opacity 0.1s ease-in-out;
-    z-index: ${({ sidebarVisible }) => sidebarVisible ? 0 : -2};
+    z-index: ${({ sidebarVisible }) => (sidebarVisible ? 0 : -2)};
   }
-`
+`;
 
 const Background = styled.div`
-  background: linear-gradient(130deg, ${COLOUR.mono[17]} 90%, ${COLOUR.secondary});
+  background: linear-gradient(
+    130deg,
+    ${COLOUR.mono[17]} 90%,
+    #c9ccf5 93%,
+    #b8bcf2 95%,
+    ${COLOUR.secondary}
+  );
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-`
+`;
 
 export const Layout = ({ children }) => {
   const env = inferEnv();
-  const pageTitle = inferEnv() === "development" ? "gudehn.dev 🏗" : "Felix Gudéhn";
-  const initialDisplaySidebar = env !== "node" && window.innerWidth > SCREEN_SIZE.tablet;
+  const pageTitle =
+    inferEnv() === "development" ? "gudehn.dev 🏗" : "Felix Gudéhn";
+  const initialDisplaySidebar =
+    env !== "node" && window.innerWidth > SCREEN_SIZE.tablet;
 
   const [displaySidebar, setDisplaySidebar] = useState(initialDisplaySidebar);
 
@@ -66,7 +79,10 @@ export const Layout = ({ children }) => {
         <meta charSet="utf-8" />
         <title>{pageTitle}</title>
         <link rel="canonical" href="https://felix.gudehn.dev/" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,700;1,400&family=Podkova:wght@500;700&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,700;1,400&family=Podkova:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
       <Sidebar isOpen={displaySidebar} />
       <Background onClick={hideSidebar} />
@@ -77,5 +93,5 @@ export const Layout = ({ children }) => {
         <MenuIcon />
       </Fab>
     </>
-  )
-}
+  );
+};
