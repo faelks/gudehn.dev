@@ -37,7 +37,8 @@ export const SCREEN_SIZE = {
   tablet: 768,
   laptop: 1024,
   laptopL: 1440,
-  desktop: 2560
+  desktop: 2560,
+  desktopL: 4400
 }
 
 export const BREAKPOINT = {

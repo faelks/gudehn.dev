@@ -16,7 +16,7 @@ export default () => {
   return (
     <Layout>
       <Stack yPadding="large" items="center">
-        <ProfileCircle diameter={120} />
+        <ProfileCircle diameter={120} breakpoint="desktopL" />
         <Header title="Felix Gudéhn">
           <SubHeading>
             Work in progress{" "}
