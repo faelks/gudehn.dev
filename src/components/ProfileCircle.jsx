@@ -5,13 +5,13 @@ import { COLOUR, BREAKPOINT } from "../constants";
 
 const DEFAULT_DIAMETER = 90;
 
-export function ProfileCircle({ diameter, breakpoint }) {
+export function ProfileCircle({ diameter, displayBreakpoint }) {
   const diameterPx = `${diameter || DEFAULT_DIAMETER}px`;
 
   let breakpointMediaQuery = "";
   if (breakpoint) {
     breakpointMediaQuery = `
-      @media ${BREAKPOINT[breakpoint]} {
+      @media ${BREAKPOINT[displayBreakpoint]} {
         display: none;
       }
     `

@@ -49,7 +49,7 @@ export const BREAKPOINT = {
   laptop: `(min-width: ${SCREEN_SIZE.laptop}px)`,
   laptopL: `(min-width: ${SCREEN_SIZE.laptopL}px)`,
   desktop: `(min-width: ${SCREEN_SIZE.desktop}px)`,
-  desktopL: `(min-width: ${SCREEN_SIZE.desktop}px)`
+  desktopL: `(min-width: ${SCREEN_SIZE.desktopL}px)`
 };
 
 export const FONT = {
