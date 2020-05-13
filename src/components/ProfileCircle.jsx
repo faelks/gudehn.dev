@@ -8,23 +8,15 @@ const DEFAULT_DIAMETER = 90;
 export function ProfileCircle({ diameter, displayBreakpoint }) {
   const diameterPx = `${diameter || DEFAULT_DIAMETER}px`;
 
-  let breakpointMediaQuery = "";
-  if (displayBreakpoint) {
-    breakpointMediaQuery = `
-      @media ${BREAKPOINT[displayBreakpoint]} {
-        display: none;
-      }
-    `
-  }
-
-
   const RoundContainer = styled.div`
     height: ${diameterPx};
     width: ${diameterPx};
     border-radius: ${diameterPx};
     border: 1px solid ${COLOUR.secondary};
 
-    ${breakpointMediaQuery}
+    @media ${props => BREAKPOINT[props.breakpoint || "desktopL"]} {
+      display: none;
+    }
   `;
 
   const ProfileImage = styled.img`
@@ -34,7 +26,7 @@ export function ProfileCircle({ diameter, displayBreakpoint }) {
   `;
 
   return (
-    <RoundContainer>
+    <RoundContainer breakpoint={displayBreakpoint}>
       <ProfileImage src={ProfilePicture} alt="Picture of me, Felix Gudéhn!" />
     </RoundContainer>
   );
